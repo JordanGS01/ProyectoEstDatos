@@ -6,6 +6,8 @@
 
 **Jordán**
 
+## Historia del juego
+
 ## Principales estructuras de datos creadas
 
 ## Metodos principales
