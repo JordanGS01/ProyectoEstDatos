@@ -35,7 +35,7 @@ int main(int argc, char** argv)
                           { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
     };
 
-
+    //SDL Library Initialization
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);//Initialization of the components needed of SDL.
     IMG_Init(IMG_INIT_PNG);
     
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
         640, 0);
     //Renderer initialization
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-    //Carge of the game sprites to the  renderer.
+    //declaration of the game sprites to the  renderer.
     SDL_Surface* pers2 = IMG_Load("pers2.png");
     SDL_Surface* image = IMG_Load("asda(1).png");
     SDL_Surface* vent = SDL_GetWindowSurface(window);
@@ -90,13 +90,13 @@ int main(int argc, char** argv)
             }
         }
     }
-    //Variables used for the location of the Players
+    //Variables used for the initial location of the Players
     int x = 32;
     int y = 32;
     int pj2_x = 32;
     int pj2_y = 64;
     
-    //Variables used to move across the sprite sheet and print the different sprites used to animate the players movement.
+    //Variables used to move across the sprite sheet and print the different sprites used to animate the players movement,it .
     int tipo_movimiento = 0;
     int tipo_movimiento2 = 64;
     int tick = 1;
@@ -107,22 +107,27 @@ int main(int argc, char** argv)
     //Main loop. Stay running while the players still have lifes
     while (vidas != 0)
     {
-
+        // variables using for the draw of the labyrinth    
         int pintar_x = 0;
         int pintar_y = 0;
+        //variable that control if the characters lives or not
         bool muerte = false;
         bool muerte2 = false;
+        // variables used for the management of animations, the variables have the duty of change the the order of draw in the sprite sheet 
         Uint32 ticks = SDL_GetTicks();
         Uint32 sprite2 = (ticks / 100) % tick2;
         Uint32 sprite = (ticks / 100) % tick;
         Uint32 temp_explosion = (ticks / 100) % 4;
+        // variables in charge of the position of different sprites
         SDL_Rect laberinto = { pintar_x,pintar_y,32,32 };
         SDL_Rect srcrect = { tipo_movimiento, (sprite * 32) + 0, 32, 32 };
         SDL_Rect dstrect = { x, y, 32, 32 };
         SDL_Rect dimensiones_pj2 = { (sprite2 * 32),tipo_movimiento2,32,32 };
         SDL_Rect dimensionesV_pj2 = { pj2_x,pj2_y,32,32 };
         SDL_Rect dimensiones_exp = { (temp_explosion * 32),0,32,32 };
+        // the funtion that waits for a keyboard event
         SDL_PollEvent(&event);
+        //loop used for update the maze
         for (int row = 0; row < 20; row++) {
             for (int column = 0; column < 25; column++) {
                 switch (matriz[row][column])
@@ -142,8 +147,10 @@ int main(int argc, char** argv)
             laberinto.x = 0;
             laberinto.y += 32;
         }
+        // the value of these 2 functions in 1 make the characters static when they are not moving 
         tick = 1;
         tick2 = 1;
+        
         switch (event.type)//Used to control the game events.
         {
         case SDL_QUIT:
@@ -155,22 +162,24 @@ int main(int argc, char** argv)
             {
             case SDLK_RIGHT://Move the first player to the right.
                 if (x < 800 - 32) {
+                    // this function are in charge of the character 1 movement and animation based on the position that the user wants to move.
                     tipo_movimiento = 96;
                     tick = 4;
                     x += 4;
-                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
 
             case SDLK_LEFT://Move the first player to the left.
                 if (x > 0) {
+                    // this function are in charge of the character 1 movement and animation based on the position that the user wants to move.
                     tipo_movimiento = 32;
                     tick = 4;
                     x = x - 4;
-                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
@@ -178,43 +187,47 @@ int main(int argc, char** argv)
             case SDLK_UP://Move up the first player.
                 if (y > 0)
                 {
+                    // this function are in charge of the character 1 movement and animation based on the position that the user wants to move.
                     tick = 4;
                     tipo_movimiento = 64;
                     y = y - 4;
-                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
             case SDLK_DOWN://Move down the first player.
                 if (y < 600 - 32) {
+                    // this function are in charge of the character 1 movement and animation based on the position that the user wants to move.
                     tick = 4;
                     tipo_movimiento = 0;
                     y += 4;
-                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(x, y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
 
             case SDLK_s://Move down the second player.
                 if (pj2_x < 800 - 32) {
+                    // this function are in charge of the character 2 movement and animation based on the position that the user wants to move.
                     tipo_movimiento2 = 64;
                     tick2 = 3;
                     pj2_y += 4;
-                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
 
             case SDLK_a://Move the second player to the left.
                 if (pj2_x > 0) {
+                    // this function are in charge of the character 2 movement and animation based on the position that the user wants to move.
                     tipo_movimiento2 = 96;
                     tick2 = 3;
                     pj2_x = pj2_x - 4;
-                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
@@ -222,21 +235,23 @@ int main(int argc, char** argv)
             case SDLK_w://Move up the second player.
                 if (pj2_y > 0)
                 {
+                    // this function are in charge of the character 2 movement and animation based on the position that the user wants to move.
                     tick2 = 3;
                     tipo_movimiento2 = 0;
                     pj2_y = pj2_y - 4;
-                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
             case SDLK_d://Move the second player to the right.
                 if (pj2_y < 600 - 32) {
+                    // this function are in charge of the character 2 movement and animation based on the position that the user wants to move.
                     tick2 = 3;
                     tipo_movimiento2 = 32;
                     pj2_x += 4;
-                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa);
-                    SDL_Delay(30);
+                    comprobarRecompensa(pj2_x, pj2_y, coordenadas_recompensa, matriz, sound_Recompensa); // function for take the rewards
+                    SDL_Delay(30);// delay used for a more fluid movement
                     break;
                 }
                 break;
@@ -254,7 +269,7 @@ int main(int argc, char** argv)
         }
 
         //Functions to control the players lifes
-        //In case the player dies. It reproduse the death audio adn shows the death sprite. Then the player is located at the beggining.
+        //In case the player1 dies. It reproduse the death audio adn shows the death sprite. Then the player is located at the beggining.
         if (muerte == true) {
             SDL_RenderCopy(renderer, texturaExplosion, &dimensiones_exp, &dstrect);
             SDL_RenderPresent(renderer);
@@ -264,8 +279,10 @@ int main(int argc, char** argv)
             y = 32;
         }
         else {
+            // add the texture of the player 1 to the renderer
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
         }
+         //In case the player2 dies. It reproduse the death audio adn shows the death sprite. Then the player is located at the beggining.
         if (muerte2 == true) {
             SDL_RenderCopy(renderer, texturaExplosion, &dimensiones_exp, &dimensionesV_pj2);
             SDL_RenderPresent(renderer);
@@ -275,11 +292,13 @@ int main(int argc, char** argv)
             pj2_y = 64;
         }
         else {
+             // add the texture of the player 1 to the renderer
             SDL_RenderCopy(renderer, textura_pj2, &dimensiones_pj2, &dimensionesV_pj2);
         }
-        SDL_RenderPresent(renderer);
-        SDL_RenderClear(renderer);
+        SDL_RenderPresent(renderer); // show renderer information on the screen
+        SDL_RenderClear(renderer); // clear the screen
     }
+    // This section is in charge of clean memory, by the destruction of the variables used
     Mix_FreeMusic(bgm);
     Mix_FreeChunk(sound);
     Mix_FreeChunk(sound_Recompensa);
