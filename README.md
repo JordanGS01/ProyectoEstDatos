@@ -27,7 +27,7 @@ Se creó una matriz de 20x25 para manejar el pintado del laberinto, siendo un va
    
 **Manejo de la posición y animaciones de sprites**
 
-    Se hace manejo de las estructuras de datos SDL_Rect para el pintado de personajes y el laberinto. manejando las posiciones de estos mediante el incremento 
+   Se hace manejo de las estructuras de datos SDL_Rect para el pintado de personajes y el laberinto. manejando las posiciones de estos mediante el incremento 
    o decremento de los valores de la estructura.
 
 ## Metodos principales
