@@ -18,7 +18,7 @@
  
 **Matriz para pintado del mapa**
 
-Se creó una matriz de 25x20 para manejar el pintado del laberinto. 
+Se creó una matriz de 20x25 para manejar el pintado del laberinto. 
 
 ## Metodos principales
 
