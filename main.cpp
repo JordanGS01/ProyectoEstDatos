@@ -11,7 +11,8 @@ int main(int argc, char** argv)
     bool quit = false;
     SDL_Event event;
     srand(time(NULL));
-    int random;
+    int random;//Used to located the rewards randomly in the matrix
+    //Matrix used to control the painting of the screen.
     int matriz[20][25] = { { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
                           { 1,0,1,0,0,0,0,0,0,1,0,1,1,0,1,0,1,0,1,0,0,0,1,0,1 },
                           { 1,0,0,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1 },
@@ -35,20 +36,28 @@ int main(int argc, char** argv)
     };
 
 
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);//Initialization of the components needed of SDL.
     IMG_Init(IMG_INIT_PNG);
+    
+    //Sound error control
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
         std::cout << "Error" << Mix_GetError();
     }
+    //SOUND variables
     Mix_Music* bgm = Mix_LoadMUS("Lich yard.mp3");
     Mix_Chunk* sound = Mix_LoadWAV("Explosion.wav");
     Mix_Chunk* sound_Recompensa = Mix_LoadWAV("recompensa.wav");
-    int coordenadas_recompensa[3][2];
-    int vidas = 3;
+    
+    int coordenadas_recompensa[3][2];//Used to store the location of the rewards.
+    
+    int vidas = 3;//Players lifes control.
+    //Window initialization
     SDL_Window* window = SDL_CreateWindow("Juego 2D",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800,
         640, 0);
+    //Renderer initialization
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+    //Carge of the game sprites to the  renderer.
     SDL_Surface* pers2 = IMG_Load("pers2.png");
     SDL_Surface* image = IMG_Load("asda(1).png");
     SDL_Surface* vent = SDL_GetWindowSurface(window);
@@ -62,6 +71,8 @@ int main(int argc, char** argv)
     SDL_Texture* textura_recompensa = SDL_CreateTextureFromSurface(renderer, recompensa);
     SDL_Texture* textura_pj2 = SDL_CreateTextureFromSurface(renderer, pers2);
     SDL_Texture* texturaExplosion = SDL_CreateTextureFromSurface(renderer, explosion);
+    
+    //Loop used to print randomly the rewards on the matrix used to paint the map.
     int rec = 0;
     while (rec < 3) {
         for (int row = 0; row < 20; row++) {
@@ -79,16 +90,21 @@ int main(int argc, char** argv)
             }
         }
     }
+    //Variables used for the location of the Players
     int x = 32;
     int y = 32;
     int pj2_x = 32;
     int pj2_y = 64;
+    
+    //Variables used to move across the sprite sheet and print the different sprites used to animate the players movement.
     int tipo_movimiento = 0;
     int tipo_movimiento2 = 64;
     int tick = 1;
     int tick2 = 1;
-    Mix_PlayMusic(bgm, -1);
+    
+    Mix_PlayMusic(bgm, -1);//Back ground music.
 
+    //Main loop. Stay running while the players still have lifes
     while (vidas != 0)
     {
 
@@ -128,16 +144,16 @@ int main(int argc, char** argv)
         }
         tick = 1;
         tick2 = 1;
-        switch (event.type)
+        switch (event.type)//Used to control the game events.
         {
         case SDL_QUIT:
             quit = true;
             break;
 
-        case SDL_KEYDOWN:
+        case SDL_KEYDOWN://In case any key is pressed
             switch (event.key.keysym.sym)
             {
-            case SDLK_RIGHT:
+            case SDLK_RIGHT://Move the first player to the right.
                 if (x < 800 - 32) {
                     tipo_movimiento = 96;
                     tick = 4;
@@ -148,7 +164,7 @@ int main(int argc, char** argv)
                 }
                 break;
 
-            case SDLK_LEFT:
+            case SDLK_LEFT://Move the first player to the left.
                 if (x > 0) {
                     tipo_movimiento = 32;
                     tick = 4;
@@ -159,7 +175,7 @@ int main(int argc, char** argv)
                 }
                 break;
 
-            case SDLK_UP:
+            case SDLK_UP://Move up the first player.
                 if (y > 0)
                 {
                     tick = 4;
@@ -170,7 +186,7 @@ int main(int argc, char** argv)
                     break;
                 }
                 break;
-            case SDLK_DOWN:
+            case SDLK_DOWN://Move down the first player.
                 if (y < 600 - 32) {
                     tick = 4;
                     tipo_movimiento = 0;
@@ -181,7 +197,7 @@ int main(int argc, char** argv)
                 }
                 break;
 
-            case SDLK_s:
+            case SDLK_s://Move down the second player.
                 if (pj2_x < 800 - 32) {
                     tipo_movimiento2 = 64;
                     tick2 = 3;
@@ -192,7 +208,7 @@ int main(int argc, char** argv)
                 }
                 break;
 
-            case SDLK_a:
+            case SDLK_a://Move the second player to the left.
                 if (pj2_x > 0) {
                     tipo_movimiento2 = 96;
                     tick2 = 3;
@@ -203,7 +219,7 @@ int main(int argc, char** argv)
                 }
                 break;
 
-            case SDLK_w:
+            case SDLK_w://Move up the second player.
                 if (pj2_y > 0)
                 {
                     tick2 = 3;
@@ -214,7 +230,7 @@ int main(int argc, char** argv)
                     break;
                 }
                 break;
-            case SDLK_d:
+            case SDLK_d://Move the second player to the right.
                 if (pj2_y < 600 - 32) {
                     tick2 = 3;
                     tipo_movimiento2 = 32;
@@ -224,6 +240,8 @@ int main(int argc, char** argv)
                     break;
                 }
                 break;
+                    
+             //This part is just used to proof the players lifes.
             case SDLK_m:
                 muerte = true;
                 --vidas;
@@ -235,6 +253,8 @@ int main(int argc, char** argv)
             }
         }
 
+        //Functions to control the players lifes
+        //In case the player dies. It reproduse the death audio adn shows the death sprite. Then the player is located at the beggining.
         if (muerte == true) {
             SDL_RenderCopy(renderer, texturaExplosion, &dimensiones_exp, &dstrect);
             SDL_RenderPresent(renderer);
