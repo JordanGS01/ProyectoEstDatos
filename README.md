@@ -7,6 +7,7 @@
 **Victor**
   Correos electrónicos:
   - victorjulio345@gmail.com
+  
 **Jordán Guzmán Salas**
   Correos electrónicos:
   - jordan-guzman-salas@hotmail.com
