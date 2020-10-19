@@ -3,6 +3,7 @@
   
 ## Grupo desarrollador
   Ambos desarrolladores son estudiantes del Instituto Tecnológico de Costa Rica y cuyos nombres son:
+  
 **Victor**
 
 **Jordán Guzmán Salas**
@@ -14,6 +15,10 @@
 ## Historia del juego
 
 ## Principales estructuras de datos creadas
+ 
+**Matriz para pintado del mapa**
+
+Se creó una matriz de 25x20 para manejar el pintado del laberinto. 
 
 ## Metodos principales
 
