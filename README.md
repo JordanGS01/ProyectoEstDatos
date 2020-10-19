@@ -16,6 +16,18 @@
   
 ## Historia del juego
 
+Dungeons WarRunners
+
+En el mundo medieval de Ogstrap, donde la magia nacia hasta de la más pequeña flor y sustentava de vida a todo elemento de su alrededor, donde todas las razas de la tierra vivian y trabajaban conjuntamente para poder, mantienendo así la paz...hasta que un dia la avaricia corrumpio al druida Zar. 
+
+El mundo de Ogstrap posee siete sustancias mágicas, sumamente poderosas e importantes, que mantienen el mundo equilibrado, todas y cada una de ellas localizadas en las zonas más ocultas de este vasto mundo. Los druidas poseen una de las siete sustancias, llamada Ark, la cual se encarga de darle vida a todo la naturaleza.
+
+Zar, conquistado por la voz de un desconocido encapuchado, se dejó seducir por las promesas de poder ilimitado que obtendría si poseia cada una de las esencias mágicas...robó el Ark de los bosques druidas, y como consecuencia de sus acciones, se desató una ola de marchitación global...
+
+Es acá donde entras en acción, encarnando a Master y Rudy, en la busqueda de Zar para recuperar el Ark de los druidas y evitar que consiga encontrar y robar las demas esencias mágicas de la tierra...ya que esto podria desencadenar un suceso fatal.
+
+Viaja a traves de masmorras, bosques y mucho más en el mundo de Ogstrap, elimina a Zar y devuelve la esencia del Ark a su lugar de origen antes de que todo sea demasiado tarde, y la última planta de la tierra haya perdido su magia...y su vida.
+
 ## Principales estructuras de datos creadas
  
 **Matriz para pintado del mapa**
@@ -56,6 +68,10 @@ Se creó una matriz de 20x25 para manejar el pintado del laberinto, siendo un va
 
 ## Analisis de resultados
 
+Se logro con éxito al implementación de movimiento, animación, y el pintado del laberinto, los personajes pueden reconocer con exito las recompensas, asi como la implementación de
+  sonido, en esta fase del proyecto del proyecto no se implementaron colisiones con paredes del laberinto estas quedaran abiertas a cambios en futuras fases, así tambien
+  como los métodos de recompensa quedaran abiertos a cambios para lograr adaptarse a partes posteriores, el principal problema esta presente con el modulado de clases y métodos, esto se procedera a corregir en futuras fases.
+  
 ## Biografia
 - [1]S. Baquero, "SDL sonidos - ID-000244379", Sites.google.com, 2014. [Online]. Available: https://sites.google.com/site/id000244379/sdl/sdl-1. [Accessed: 19- Oct- 2020].
 - [2]Code, Tech, and Tutorials, SOUND WITH C++ | PART 1 | SDL2 Mixer Walkthrough Tutorial How-To | Playing Sound Effects. 2020.
