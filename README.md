@@ -1,4 +1,4 @@
-# Titulo
+# Dungeons WarRunners
   El proyecto desarrollado en este repositorio corresponde a un juego retro estilo laberinto en 2D. El juego está desarrollado en C++ y utiliza como librería principal SDL2. La principal razón por la cual se desarrollo un proyecto de este estilo fue poner en practica y usar las estructuras de datos estudiadas en el curso.
   
 ## Grupo desarrollador
